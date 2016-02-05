@@ -7,10 +7,12 @@ cd douban_movie_scrapy
 scrapy crawl douban_movie
 ```
 #爬取的信息在哪里
-douban_movie_scrapy douban_movie_scrapy根目录下**douban_movie.json**文件
+douban_movie_scrapy根目录下**douban_movie.json**文件
 #注意事项
 必须安装[scrapy](scrapy.org)框架
 安装方法很简单,在终端下输入
 ```sh
 pip install scrapy
 ```
+#Version
+0.1
