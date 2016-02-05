@@ -1,0 +1,7 @@
+movie_name /html/body/div[3]/div[1]/h1/span/text()
+movie_director /html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/span[2]/a/text()
+movie_actor /html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[3]/span[2]/a/text()
+movie_type /html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[@property="v:genre"]/text()
+movie_date /html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[@property="v:initialReleaseDate"]/text()
+movie_rates /html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/strong/text()|/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div/div[2]/a/span/text()
+movie_desc //div[@id="link-report"]/span/text()

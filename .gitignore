@@ -1,0 +1,10 @@
+*~
+*#*
+*json
+*xml
+project.egg-info/
+scrapinghub.yml
+dist/
+setup.py
+build/
+*.pyc
