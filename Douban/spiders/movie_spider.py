@@ -2,6 +2,7 @@ from scrapy import Spider,Request
 from Douban.items import DoubanItem
 import re
 import time
+from scrapy.exceptions import IgnoreRequest
 
 class MovieSpider(Spider):
     name='douban_movie'
@@ -28,6 +29,6 @@ class MovieSpider(Spider):
             for url in douban_urls:
                 try:
                     yield Request(url,self.parse)
-                except:
+                except IgnoreRequest:
                     time.sleep(20)
                     yield Request(url,self.parse)
