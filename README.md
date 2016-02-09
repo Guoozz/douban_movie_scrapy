@@ -15,5 +15,8 @@ douban_movie_scrapy根目录下**douban_movie.json**文件
 pip install scrapy
 ```
 #Version
-0.1 参考scrapy官方tutorial写的第一个爬虫，功能很基础。爬取1000多部电影后
+###0.1
+参考scrapy官方tutorial写的第一个爬虫，功能很基础。爬取1000多部电影后
 request被重定向或出现403error
+###0.11
+在继承CrawlSpider的基础上进行代码重构,代码结构更清晰，依然没有解决403or301error
