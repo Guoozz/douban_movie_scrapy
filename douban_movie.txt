@@ -1,4 +1,4 @@
-movie_name /html/body/div[3]/div[1]/h1/span/text()
+movie_name 
 movie_director /html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/span[2]/a/text()
 movie_actor /html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[3]/span[2]/a/text()
 movie_type /html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[@property="v:genre"]/text()

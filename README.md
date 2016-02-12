@@ -7,7 +7,7 @@ cd douban_movie_scrapy
 scrapy crawl douban_movie
 ```
 #爬取的信息在哪里
-douban_movie_scrapy根目录下**douban_movie.json**文件
+保存在mongo数据库中
 #注意事项
 必须安装[scrapy](scrapy.org)框架
 安装方法很简单,在终端下输入
@@ -20,3 +20,5 @@ pip install scrapy
 request被重定向或出现403error
 ###0.11
 在继承CrawlSpider的基础上进行代码重构,代码结构更清晰，依然没有解决403or301error
+###0.12
+将爬取的数据保存在mongo数据库中，去除冗余代码
