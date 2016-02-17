@@ -14,6 +14,10 @@ scrapy crawl douban_movie
 ```sh
 pip install scrapy
 ```
+需要安装[Pillow](https://pillow.readthedocs.org/en/latest/handbook/tutorial.html)
+```sh
+pip install pillow
+```
 #Version
 ###0.1
 参考scrapy官方tutorial写的第一个爬虫，功能很基础。爬取1000多部电影后
@@ -22,3 +26,8 @@ request被重定向或出现403error
 在继承CrawlSpider的基础上进行代码重构,代码结构更清晰，依然没有解决403or301error
 ###0.12
 将爬取的数据保存在mongo数据库中，去除冗余代码
+###1.0
+加入**Douban.middlewares.DoubanCaptchaDownloadMiddleware**类处理403验证码，
+当网站需要验证码时，会自动打开验证码图片，在终端中输入验证码，爬虫会继续运行
+###1.01
+设置爬虫中间状态保存路径

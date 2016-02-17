@@ -1,7 +1,6 @@
 #! /usr/bin/python
 # -*- coding:utf-8 -*-
 
-from scrapy import Request
 from scrapy.spiders import CrawlSpider,Rule
 from scrapy.linkextractors import LinkExtractor
 from Douban.items import DoubanItem
@@ -18,19 +17,13 @@ class MovieSpider(CrawlSpider):
              callback='parse_movie',follow=True),
     )
 
-    #开始request,初始化一些参数
-    def start_requests(self):
-        self.attr_xpath = self.settings.get('ATTR_XPATH',None)
-        for url in self.start_urls:
-            yield self.make_requests_from_url(url)
-        
     def parse_movie(self,response):
         item = DoubanItem()
 
-        for attr,xpath_pattern in self.attr_xpath.items():
+        for attr,xpath_pattern in self.settings.getdict('ATTR_XPATH').items():
             item[attr] = response.xpath(xpath_pattern).extract()
 
-        yield item
+        return item
        
 
                    
