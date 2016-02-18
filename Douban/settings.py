@@ -17,12 +17,12 @@ NEWSPIDER_MODULE = 'Douban.spiders'
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS=1
+CONCURRENT_REQUESTS=4
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-# DOWNLOAD_DELAY=0.25
+DOWNLOAD_DELAY=2
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN=2
 #CONCURRENT_REQUESTS_PER_IP=16
@@ -74,6 +74,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'Douban.pipelines.DoubanPipeline': 300,
+    'scrapy.pipelines.images.ImagesPipeline':1,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -97,15 +98,16 @@ ITEM_PIPELINES = {
 
 #mongoDB settings 
 MONGO_URI = '127.0.0.1'
-MONGO_DATABASE = 'douban'
+MONGO_DATABASE = 'movies'
 
 #specified xpath
 ATTR_XPATH = {
-    'movie_name':'/html/body/div[3]/div[1]/h1/span/text()',
-    'movie_actor':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[3]/span[2]/a/text()',
-    'movie_type':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[@property="v:genre"]/text()',
-    'movie_date':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[@property="v:initialReleaseDate"]/text()',
-    'movie_rates':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/strong/text()|/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div/div[2]/a/span/text()',
-    'movie_desc':'//div[@id="link-report"]/span/text()',
+    'name':'/html/body/div[3]/div[1]/h1/span/text()',
+    'actor':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[3]/span[2]/a/text()',
+    'types':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[@property="v:genre"]/text()',
+    'date':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[@property="v:initialReleaseDate"]/text()',
+    'rates':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/strong/text()|/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div/div[2]/a/span/text()',
+    'desc':'//div[@id="link-report"]/span/text()',
 }
-JOBDIR='state/movie_spider'
+
+JBDIR='states/movie'

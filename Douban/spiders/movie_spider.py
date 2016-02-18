@@ -4,6 +4,7 @@
 from scrapy.spiders import CrawlSpider,Rule
 from scrapy.linkextractors import LinkExtractor
 from Douban.items import DoubanItem
+from scrapy.loader import ItemLoader
 
 class MovieSpider(CrawlSpider):
     name='douban_movie'
@@ -18,12 +19,13 @@ class MovieSpider(CrawlSpider):
     )
 
     def parse_movie(self,response):
-        item = DoubanItem()
-
+        
+        loader = ItemLoader(item=DoubanItem(),response=response)
+        
         for attr,xpath_pattern in self.settings.getdict('ATTR_XPATH').items():
-            item[attr] = response.xpath(xpath_pattern).extract()
+            loader.add_xpath(attr,xpath_pattern)
 
-        return item
+        return loader.load_item()
        
 
                    

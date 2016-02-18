@@ -5,7 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymongo
-
+import datetime 
 class DoubanPipeline(object):
 
     collection_name = 'movie'
@@ -29,7 +29,6 @@ class DoubanPipeline(object):
         self.client.close()
         
     def process_item(self, item, spider):
+        item['update_time'] = datetime.datetime.now()
         self.db[self.collection_name].insert(dict(item))
         return item
-
-        
