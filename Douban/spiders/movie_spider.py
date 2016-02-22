@@ -12,15 +12,12 @@ class MovieSpider(CrawlSpider):
     allowed_domains = ['douban.com']
     start_urls=[
         "http://movie.douban.com",
-        "http://movie.douban.com/subject/24875409/?from=tag",
-        "http://www.douban.com/tag/2016/?focus=movie",
     ]
 
     rules = (
         Rule(LinkExtractor(allow=(r'movie\.douban\.com/subject/[0-9]+(/\?from=.+|/)?$',)),
              callback='parse_movie',follow=True),
     )
-    error_403_count = 0
 
     def parse_movie(self,response):
         
@@ -46,5 +43,4 @@ class MovieSpider(CrawlSpider):
             loader.add_xpath(attr,xpath)
 
         return loader.load_item()
-
                    

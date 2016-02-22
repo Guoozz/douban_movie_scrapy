@@ -125,4 +125,4 @@ RATE_XPATH = {
     'average':'//strong[@property="v:average"]/text()',
 }
 
-JOBDIR='states/movie'
+JOBDIR='states/movies'
