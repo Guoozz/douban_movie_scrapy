@@ -17,15 +17,15 @@ NEWSPIDER_MODULE = 'Douban.spiders'
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS=1
+CONCURRENT_REQUESTS=32
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY=0.2
+# DOWNLOAD_DELAY=0.25
 # The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN=2
-#CONCURRENT_REQUESTS_PER_IP=16
+# CONCURRENT_REQUESTS_PER_DOMAIN=1
+# CONCURRENT_REQUESTS_PER_IP=16
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED=False
@@ -80,13 +80,13 @@ ITEM_PIPELINES = {
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
 # NOTE: AutoThrottle will honour the standard settings for concurrency and delay
-#AUTOTHROTTLE_ENABLED=True
+# AUTOTHROTTLE_ENABLED=True
 # The initial download delay
-#AUTOTHROTTLE_START_DELAY=5
+# AUTOTHROTTLE_START_DELAY=5
 # The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY=60
+# AUTOTHROTTLE_MAX_DELAY=300
 # Enable showing throttling stats for every response received:
-#AUTOTHROTTLE_DEBUG=False
+# AUTOTHROTTLE_DEBUG=True
 
 # Enable and configure HTTP caching (disabled by default)
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
@@ -99,15 +99,30 @@ ITEM_PIPELINES = {
 #mongoDB settings 
 MONGO_URI = '127.0.0.1'
 MONGO_DATABASE = 'douban'
+MONGO_COLLECTION = 'movies'
 
 #specified xpath
-ATTR_XPATH = {
-    'name':'/html/body/div[3]/div[1]/h1/span/text()',
-    'actor':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[3]/span[2]/a/text()',
-    'types':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[@property="v:genre"]/text()',
-    'date':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/span[@property="v:initialReleaseDate"]/text()',
-    'rates':'/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/strong/text()|/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div/div[2]/a/span/text()',
+INFO_XPATH = {
+    'name':'//span[@property="v:itemreviewed"]/text()',
+    'actor':'//a[@rel="v:starring"]/text()',
+    'types':'//span[@property="v:genre"]/text()',
+    'date':'//span[@property="v:initialReleaseDate"]/text()',
     'desc':'//div[@id="link-report"]/span/text()',
+    'director':'//div[@id="info"]/span[1]/span[2]/a/text()',
+    'writer':'//div[@id="info"]/span[2]/span[2]/a/text()',
+    'length':'//span[@property="v:runtime"]/text()',
+}
+
+RE = {
+    'alias':u'又名:(.+)',
+    'region':u'地区:(.+)',
+    'language':u'语言:(.+)',
+}
+
+RATE_XPATH = {
+    'stars':'//span[@class="rating_per"]/text()',
+    'num':'//span[@property="v:votes"]/text()',
+    'average':'//strong[@property="v:average"]/text()',
 }
 
 JOBDIR='states/movie'
