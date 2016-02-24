@@ -82,6 +82,8 @@ class DoubanItem(scrapy.Item):
     date = scrapy.Field()
     update_time = scrapy.Field()
     url = scrapy.Field()
+    image_urls = scrapy.Field()
+    images = scrapy.Field()
     
 class RateItem(scrapy.Item):
     num = scrapy.Field(

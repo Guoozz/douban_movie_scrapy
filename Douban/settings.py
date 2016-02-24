@@ -73,8 +73,8 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'Douban.pipelines.DoubanPipeline': 300,
-    'scrapy.pipelines.images.ImagesPipeline':1,
+    'Douban.pipelines.DoubanPipeline':300,
+    'scrapy.pipelines.images.ImagesPipeline':301,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -126,3 +126,4 @@ RATE_XPATH = {
 }
 
 JOBDIR='states/movies'
+IMAGES_STORE = 'covers'

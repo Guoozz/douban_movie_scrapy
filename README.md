@@ -18,6 +18,10 @@ pip install scrapy
 ```sh
 pip install pillow
 ```
+需要安装[MongoDB](https://www.mongodb.org/)
+```sh
+sudo apt-get install mongodb
+```
 #Version
 ###0.1
 参考scrapy官方tutorial写的第一个爬虫，功能很基础。爬取1000多部电影后
@@ -30,9 +34,11 @@ request被重定向或出现403error
 加入**Douban.middlewares.DoubanCaptchaDownloadMiddleware**类处理403验证码，
 当网站需要验证码时，会自动打开验证码图片，在终端中输入验证码，爬虫会继续运行
 ###1.01
-设置爬虫中间状态保存路径
+设置爬虫中间状态保存路径,默认保存在project根目录states文件夹下
 ###1.02
 添加ItemLoader对提取的信息进行过滤
 ###1.1
 解决并发请求下，返回多个验证码的问题。
 添加对导演，别名等信息的爬取
+###1.2
+添加对电影封面的爬取，默认保存在project根目录covers文件夹下
