@@ -14,9 +14,10 @@ class DoubanCaptchaMiddleware(object):
     
     def is_allow_post(self,spider):
         concurrent_requests = spider.settings.getint('CONCURRENT_REQUESTS')
-        return self.error_403_count % concurrent_requests*2 == 0
+        return self.error_403_count % (concurrent_requests*2) == 1
     
     def process_response(self,request,response,spider):
+        
         if response.status == 403:
             self.error_403_count += 1
             image_url = response.xpath('//img[@alt="captcha"]/@src').extract_first()

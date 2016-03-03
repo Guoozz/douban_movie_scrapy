@@ -32,14 +32,18 @@ class MovieSpider(CrawlSpider):
         for attr,regex in self.settings.getdict('RE').items():
             loader.add_value(attr,re.findall(regex,s))
             
-        image_urls = self._get_urls(self.image_base_url,urljoin,
-                                    response.xpath('//div[@id="mainpic"]/a/img/@src').extract(),
-                                    lambda s:s.split('/')[-1],
-        )
-
-        loader.add_value('image_urls',image_urls)
         loader.add_value('rate',self.parse_rate(response))
         loader.add_value('url',response.url)
+  
+        if self.settings.get('ALLOW_COVER') == True:
+            image_urls = self._get_urls(
+                self.image_base_url,
+                urljoin,
+                response.xpath('//div[@id="mainpic"]/a/img/@src').extract(),
+                lambda s:s.split('/')[-1],
+            )
+
+            loader.add_value('image_urls',image_urls)
         
         return loader.load_item()
 

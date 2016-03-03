@@ -17,7 +17,7 @@ NEWSPIDER_MODULE = 'Douban.spiders'
 USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS=32
+CONCURRENT_REQUESTS=8
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
@@ -125,5 +125,6 @@ RATE_XPATH = {
     'average':'//strong[@property="v:average"]/text()',
 }
 
-JOBDIR='states/movies'
+#JOBDIR='states/movies'
 IMAGES_STORE = 'covers'
+ALLOW_COVER = False

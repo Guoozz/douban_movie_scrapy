@@ -42,3 +42,6 @@ request被重定向或出现403error
 添加对导演，别名等信息的爬取
 ###1.2
 添加对电影封面的爬取，默认保存在project根目录covers文件夹下
+###1.21
+默认不下载电影cover,需要在settings中手动设置picture pipeline
+和ALLOW_COVER
